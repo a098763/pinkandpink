@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINK&PINK | Make Up </title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa-suave: #F8BBD0; 
+            --rosa-acento: #EC407A; 
+            --negro: #1A1A1A;
+            --blanco: #FFFFFF;
+            --gris-claro: #FAFAFA;
+            --gris-medio: #E0E0E0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--blanco);
+            color: var(--negro);
+            line-height: 1.7;
+            letter-spacing: 0.3px;
+        }
+        h1, h2, h3, h4, .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+       
+        .site-header {
+            background-color: var(--blanco);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gris-medio);
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--negro);
+            text-decoration: none;
+            position: relative;
+        }
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--rosa-acento);
+            border-radius: 50%;
+            bottom: 8px;
+            right: -10px;
+        }
+        .main-nav a {
+            margin-left: 2rem;
+            color: var(--negro);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        .main-nav a:hover {
+            color: var(--rosa-acento);
+        }
+        .main-nav a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background: var(--rosa-acento);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        .main-nav a:hover::before {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,187,208,0.1) 100%);
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 70px;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--gris-medio);
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--negro);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: var(--rosa-acento);
+            font-style: italic;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-principal {
+            background-color: transparent;
+            color: var(--rosa-acento);
+            border: 2px solid var(--rosa-acento);
+            padding: 1rem 2.5rem;
+            border-radius: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .btn-principal:hover {
+            background-color: var(--rosa-acento);
+            color: var(--blanco);
+        }
+       
+        .seccion-contenedor {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .titulo-seccion h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 1rem;
+            position: relative;
+        }
+        .titulo-seccion h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background-color: var(--rosa-acento);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+       
+        .historia-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .historia-texto p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #555;
+        }
+        .valores-lista {
+            margin-top: 2.5rem;
+            padding-left: 0;
+        }
+        .valor-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .valor-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--rosa-acento);
+            font-weight: bold;
+        }
+        .historia-imagen img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        /* === categorias === */
+        #categorias {
+            background-color: var(--gris-claro);
+            border-top: 1px solid var(--gris-medio);
+            border-bottom: 1px solid var(--gris-medio);
+        }
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .categoria-card {
+            background: var(--blanco);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid var(--gris-medio);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .categoria-card:hover {
+            border-color: var(--rosa-acento);
+            transform: translateY(-5px);
+        }
+        .categoria-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--rosa-acento);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .categoria-card:hover::before {
+            transform: scaleX(1);
+        }
+        .categoria-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--negro);
+        }
+        .categoria-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+      
+        .tienda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+        .producto-card {
+            background: var(--blanco);
+            border: 1px solid var(--gris-medio);
+            transition: all 0.3s;
+            position: relative;
+        }
+        .producto-card:hover {
+            border-color: var(--rosa-acento);
+        }
+        .producto-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--gris-medio);
+        }
+        .producto-info {
+            padding: 1.5rem;
+        }
+        .producto-nombre {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--negro);
+        }
+        .producto-precio {
+            color: var(--rosa-acento);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .btn-secundario {
+            background-color: transparent;
+            color: var(--negro);
+            border: 1px solid var(--negro);
+            padding: 0.6rem 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            width: 100%;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .btn-secundario:hover {
+            background-color: var(--negro);
+            color: var(--blanco);
+        }
+        
+        #formulario-pedido {
+            background: var(--blanco);
+            border: 1px solid var(--gris-medio);
+            padding: 3rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .form-grupo {
+            margin-bottom: 1.5rem;
+        }
+        .form-grupo label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--negro);
+            font-size: 0.95rem;
+        }
+        .form-grupo input,
+        .form-grupo select,
+        .form-grupo textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid var(--gris-medio);
+            background: var(--gris-claro);
+            border-radius: 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .form-grupo input:focus,
+        .form-grupo select:focus,
+        .form-grupo textarea:focus {
+            outline: none;
+            border-color: var(--rosa-acento);
+            background: var(--blanco);
+        }
+        .ancho-completo {
+            grid-column: 1 / 3;
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn-enviar {
+            background-color: var(--negro);
+            color: var(--blanco);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .btn-enviar:hover {
+            background-color: var(--rosa-acento);
+        }
+        #mensaje-confirmacion {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--gris-claro);
+            display: none;
+            font-weight: 500;
+            border-left: 3px solid var(--rosa-acento);
+        }
+        
+        .site-footer {
+            background-color: var(--negro);
+            color: var(--blanco);
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-contenido {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blanco);
+            margin-bottom: 1rem;
+        }
+        .footer-info p {
+            color: #aaa;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+        .footer-info h4 {
+            color: var(--blanco);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .metodos-pago {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .metodo-icono {
+            background: #333;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .site-header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            .main-nav {
+                margin-top: 1rem;
+            }
+            .main-nav a {
+                margin: 0 1rem;
+                font-size: 0.85rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .historia-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .ancho-completo {
+                grid-column: 1;
+            }
+            #formulario-pedido {
+                padding: 2rem;
+            }
+            .seccion-contenedor {
+                padding: 3rem 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .titulo-seccion h2 {
+                font-size: 2rem;
+            }
+            .categorias-grid {
+                grid-template-columns: 1fr;
+            }
+            .tienda-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- === header === -->
+    <header class="site-header">
+        <a href="#" class="logo">PINK&amp;PINK</a>
+        <nav class="main-nav">
+            <a href="#historia">Historia</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#tienda">Productos</a>
+            <a href="#pedido">Pedido</a>
+        </nav>
+    </header>
+
+    
+    <section class="hero">
+        <div class="hero-content">
+			
+            <h1>Belleza con <span>propósito</span></h1>
+            <p>Maquillaje de alta calidad, cruelty-free y diseñado para realzar tu belleza natural. Simplificamos la belleza para que brilles sin complicaciones.</p>
+            <a href="#tienda" class="btn-principal">Ver Colección</a>
+			
+        </div>
+    </section>
+
+    <!-- === historia === -->
+    <section id="historia" class="seccion-contenedor">
+        <div class="titulo-seccion"><h2>Nuestra esencia</h2>
+        </div>
+        <div class="historia-grid">
+            <div class="historia-texto">
+                <p>PINK&PINK nació de la convicción de que el maquillaje debe ser una herramienta de expresión, no una máscara. Fundada por dos amigas apasionadas por la belleza auténtica, buscamos democratizar el acceso a productos de calidad profesional.</p>
+                <p>Operamos exclusivamente online para eliminar costos innecesarios, ofreciéndote fórmulas innovadoras, alta pigmentación y larga duración directamente en tu puerta.</p>
+                
+                <ul class="valores-lista">
+                    <li class="valor-item">Productos 100% cruelty-free</li>
+                    <li class="valor-item">Fórmulas de larga duración</li>
+                    <li class="valor-item">Envíos rápidos en 24-48h</li>
+                    <li class="valor-item">Asesoría personalizada gratuita</li>
+                </ul>
+            </div>
+            <div class="historia-imagen">
+                <img src="images/pink ss.jpg" alt="Productos de belleza PINK&PINK">
+            </div>
+        </div>
+    </section>
+
+   <!-- === categorias === -->
+    <section id="categorias" class="seccion-contenedor">
+        <div class="titulo-seccion"><h2>Categorías Principales</h2></div>
+        
+        <div class="categorias-grid">
+            <div class="categoria-card">
+                <h3>Labiales</h3>
+                <p>Desde mattes intensos hasta glosses brillantes, colores para cada ocasión.</p>
+            </div>
+            <div class="categoria-card">
+                <h3>Ojos</h3>
+                <p>Sombras, eyeliners y máscaras para crear miradas impactantes.</p>
+            </div>
+            <div class="categoria-card">
+                <h3>Rostro</h3>
+                <p>Bases, correctores y rubores para un acabado perfecto.</p>
+            </div>
+            <div class="categoria-card">
+                <h3>Herramientas</h3>
+                <p>Pinceles y accesorios de calidad profesional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === productos === -->
+    <section id="tienda" class="seccion-contenedor">
+        <div class="titulo-seccion"><h2>Destacados</h2></div>
+        
+        <div class="tienda-grid">
+            <!-- Producto 1 -->
+            <div class="producto-card">
+                <img src="https://down-br.img.susercontent.com/file/sg-11134201-7reoi-m1sijp4nklti01" alt="Labial Líquido" class="producto-img">
+                <div class="producto-info">
+                    <div class="producto-nombre">Labial Líquido Rayot</div>
+                    <span class="producto-precio">$149 MXN</span>
+                    <a href="#pedido" class="btn-secundario">Solicitar</a>
+                </div>
+            </div>
+            <!-- Producto 2 -->
+            <div class="producto-card">
+                <img src="https://cdn-0.somosmamas.com.ar/wp-content/uploads/2021/03/Paletas-de-maquillaje-nyx-16-tonos.jpg" alt="Paleta de Sombras" class="producto-img">
+                <div class="producto-info">
+                    <div class="producto-nombre">Paleta Ultimate</div>
+                    <span class="producto-precio">$549 MXN</span>
+                    <a href="#pedido" class="btn-secundario">Solicitar</a>
+                </div>
+            </div>
+            <!-- Producto 3 -->
+            <div class="producto-card">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.S-_Lq7wLZudxU17_4nTtbAHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Base de Maquillaje" class="producto-img">
+                <div class="producto-info">
+                    <div class="producto-nombre">Base L'oreal</div>
+                    <span class="producto-precio">$299 MXN</span>
+                    <a href="#pedido" class="btn-secundario">Solicitar</a>
+                </div>
+            </div>
+            <!-- Producto 4 -->
+            <div class="producto-card">
+                <img src="https://http2.mlstatic.com/set-de-20-pinceles-y-brochas-para-maquillaje-profesional-D_NQ_NP_128021-MLV20679321232_042016-F.jpg" alt="Kit de Pinceles" class="producto-img">
+                <div class="producto-info">
+                    <div class="producto-nombre">Kit Pinceles "Pro"</div>
+                    <span class="producto-precio">$499 MXN</span>
+                    <a href="#pedido" class="btn-secundario">Solicitar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === form === -->
+    <section id="pedido" class="seccion-contenedor" style="padding-top:0;">
+        <div id="formulario-pedido">
+            <div class="titulo-seccion"><h2>Solicitar productos</h2>
+            </div>
+            <p style="text-align:center; margin-bottom:3rem; color: #666; font-size: 1rem;">Completa el formulario y te contactaremos para confirmar disponibilidad y detalles de envío.</p>
+            
+            <form id="formPedidoMakeup" action="https://script.google.com/macros/s/AKfycbyIMlMEaH6ko7lAg6pNFUGl6CuWEKRpK_ubukVUUKF7ZM8q8E7x0pe4o_wNa7DtlW2Z/exec" method="POST">
+                <div class="form-grid">
+                    <div class="form-grupo">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="email">Correo electrónico *</label>
+                        <input type="email" id="email" name="email" required placeholder="ejemplo@email.com">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Opcional">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="producto_interes">Producto de interés *</label>
+                        <select id="producto_interes" name="producto_interes" required>
+                            <option value="" disabled selected>Selecciona producto</option>
+                            <option value="labial_boss">Labial líquido</option>
+                            <option value="paleta_neon">Paleta</option>
+                            <option value="base_skin">Base</option>
+                            <option value="kit_pinceles">Kit de pinceles "Pro"</option>
+                            <option value="varios">Varios productos / Consulta</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo ancho-completo">
+                        <label for="detalles">Detalles adicionales</label>
+                        <textarea id="detalles" name="detalles" placeholder="Especifica tonos, cantidades o cualquier información relevante para tu pedido..."></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-enviar">
+                    ENVIAR SOLICITUD
+                </button>
+            </form>
+            <p id="mensaje-confirmacion"></p>
+        </div>
+    </section>
+
+    <!-- === footer === -->
+    <footer class="site-footer">
+        <div class="seccion-contenedor" style="padding: 0 0 2rem 0;">
+            <div class="footer-contenido">
+              <div class="footer-info">
+                <div class="footer-logo">PINK&PINK</div>
+                  <p>Hecho para realzar tu belleza única.</p>
+                </div>
+                
+              <div class="footer-info">
+                    <h4>Contacto</h4>
+                    <p>contacto@pinkpink.com</p>
+                <p>222 987 6543</p>
+                  <p>Envíos a todo México&nbsp;</p>
+                </div>
+                
+             
+                </div>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 0.9rem; padding-top: 2rem; border-top: 1px solid #333;">
+                © 2025 PINK&PINK MakeUp. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+   <script>
+    // Header con efecto sutil
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.site-header');
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+        } else {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = 'none';
+        }
+    });
+    
+    // Manejo del formulario CORREGIDO
+    document.getElementById('formPedidoMakeup').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = this;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const mensaje = document.getElementById('mensaje-confirmacion');
+        
+        // Cambiar texto del botón
+        submitBtn.textContent = 'ENVIANDO...';
+        submitBtn.disabled = true;
+        mensaje.style.display = 'none';
+        
+        // Tu URL de Apps Script (ya la tienes)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyIMlMEaH6ko7lAg6pNFUGl6CuWEKRpK_ubukVUUKF7ZM8q8E7x0pe4o_wNa7DtlW2Z/exec';
+        
+        // Crear FormData
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+        
+        // Usar fetch CORREGIDO
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data).toString()
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(text => {
+            try {
+                const result = JSON.parse(text);
+                if (result.result === 'success') {
+                    mensaje.innerHTML = '✓ Solicitud enviada. Te contactaremos en menos de 24 horas.';
+                    mensaje.style.color = '#4CAF50';
+                    form.reset();
+                } else {
+                    throw new Error(result.error);
+                }
+            } catch {
+                // Si no es JSON válido, asumimos éxito
+                mensaje.innerHTML = '✓ Solicitud enviada. Te contactaremos pronto.';
+                mensaje.style.color = '#4CAF50';
+                form.reset();
+            }
+            mensaje.style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mensaje.innerHTML = '⚠️ Error al enviar. Por favor, intenta nuevamente o contáctanos directamente.';
+            mensaje.style.color = '#EC407A';
+            mensaje.style.display = 'block';
+        })
+        .finally(() => {
+            submitBtn.textContent = 'ENVIAR SOLICITUD';
+            submitBtn.disabled = false;
+            
+            setTimeout(() => {
+                mensaje.style.display = 'none';
+            }, 5000);
+        });
+    });
+</script>
+</body>
+
+</html>
+
+
+
